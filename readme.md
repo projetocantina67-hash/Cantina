@@ -2,7 +2,7 @@
 
 Sistema desenvolvido em **Java**, com persistência de dados em **MySQL** via JDBC, para o agendamento de produtos da cantina do SENAI. Permite que os alunos façam pedidos antecipados dos produtos disponíveis, otimizando o atendimento e reduzindo filas nos horários de pico.
 
-Projeto acadêmico desenvolvido por Erick.
+Projeto acadêmico desenvolvido por Erick, Joyce, Marcus e Thiago.
 
 ## 🚀 Funcionalidades
 
@@ -21,7 +21,7 @@ Projeto acadêmico desenvolvido por Erick.
 ## 🛠️ Tecnologias utilizadas
 
 - Java (JDK 21)
-- JDBC
+- Springboot
 - MySQL
 - IntelliJ IDEA
 
