@@ -9,7 +9,7 @@ public class Produto
     private String descricao;
     private CategoriaProduto categoriaProduto;
     private String tempoPreparoMinutos;
-    private String quantidadeDisponivelHoje;
+    private int quantidadeDisponivelHoje;
     private boolean ativo;
 
     public Produto() {
@@ -18,7 +18,7 @@ public class Produto
 
     public Produto(Long id, String nome, String descricao,
                    CategoriaProduto categoriaProduto, String tempoPreparoMinutos,
-                   String quantidadeDisponivelHoje, boolean ativo) {
+                   int quantidadeDisponivelHoje, boolean ativo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -60,11 +60,11 @@ public class Produto
         this.categoriaProduto = categoriaProduto;
     }
 
-    public String getQuantidadeDisponivelHoje() {
+    public int getQuantidadeDisponivelHoje() {
         return quantidadeDisponivelHoje;
     }
 
-    public void setQuantidadeDisponivelHoje(String quantidadeDisponivelHoje) {
+    public void setQuantidadeDisponivelHoje(int quantidadeDisponivelHoje) {
         this.quantidadeDisponivelHoje = quantidadeDisponivelHoje;
     }
 

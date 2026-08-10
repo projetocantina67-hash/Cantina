@@ -4,33 +4,30 @@ import br.com.cantina.Cantina.database.enums.StatusPedido;
 
 public class Pedido {
     private Long id;
-    private String pago;
+    private Enum<StatusPedido> Status;
     private String dataHoraPedido;
     private String horarioEstimadoRetirada;
-    private String horarioRetiradaReal;
     private double valorTotal;
     private Usuario usuario;
-    private StatusPedido statusPedido;
 
 
 
-    public Pedido(Long id, String pago, String dataHoraPedido, String horarioEstimadoRetirada, String horarioRetiradaReal, double valorTotal, Usuario usuario, StatusPedido statusPedido) {
+
+    public Pedido(Long id, Enum<StatusPedido> Status, String dataHoraPedido, String horarioEstimadoRetirada, String horarioRetiradaReal, double valorTotal, Usuario usuario, StatusPedido statusPedido) {
         this.id = id;
-        this.pago = pago;
+        this.Status = Status;
         this.dataHoraPedido = dataHoraPedido;
         this.horarioEstimadoRetirada = horarioEstimadoRetirada;
-        this.horarioRetiradaReal = horarioRetiradaReal;
         this.valorTotal = valorTotal;
         this.usuario = usuario;
-        this.statusPedido = statusPedido;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getPago() {
-        return pago;
+    public Enum<StatusPedido> getStatus() {
+        return Status;
     }
 
     public String getDataHoraPedido() {
@@ -41,9 +38,6 @@ public class Pedido {
         return horarioEstimadoRetirada;
     }
 
-    public String getHorarioRetiradaReal() {
-        return horarioRetiradaReal;
-    }
 
     public double getValorTotal() {
         return valorTotal;
@@ -53,7 +47,4 @@ public class Pedido {
         return usuario;
     }
 
-    public StatusPedido getStatusPedido() {
-        return statusPedido;
-    }
 }
