@@ -1,21 +1,35 @@
 package br.com.cantina.Cantina.database.model;
 
 import br.com.cantina.Cantina.database.enums.StatusPedido;
+import br.com.cantina.Cantina.database.model.Usuario;
+import jakarta.persistence.*;
 
+
+@Entity(name = "Pedido")
+@Table(name = "pedido")
 public class Pedido {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Enum<StatusPedido> Status;
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
+
     private String dataHoraPedido;
     private String horarioEstimadoRetirada;
     private double valorTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    public Pedido() {
+    }
 
-
-
-    public Pedido(Long id, Enum<StatusPedido> Status, String dataHoraPedido, String horarioEstimadoRetirada, String horarioRetiradaReal, double valorTotal, Usuario usuario, StatusPedido statusPedido) {
+    public Pedido(Long id, StatusPedido status, String dataHoraPedido, String horarioEstimadoRetirada, double valorTotal, Usuario usuario) {
         this.id = id;
-        this.Status = Status;
+        this.status = status;
         this.dataHoraPedido = dataHoraPedido;
         this.horarioEstimadoRetirada = horarioEstimadoRetirada;
         this.valorTotal = valorTotal;
@@ -26,8 +40,8 @@ public class Pedido {
         return id;
     }
 
-    public Enum<StatusPedido> getStatus() {
-        return Status;
+    public StatusPedido getStatus() {
+        return status;
     }
 
     public String getDataHoraPedido() {
@@ -38,13 +52,20 @@ public class Pedido {
         return horarioEstimadoRetirada;
     }
 
-
     public double getValorTotal() {
         return valorTotal;
     }
 
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public void setStatus(StatusPedido status) {
+        this.status = status;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 }

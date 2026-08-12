@@ -1,16 +1,25 @@
 package br.com.cantina.Cantina.database.model;
 
 import br.com.cantina.Cantina.database.enums.Perfil;
+import jakarta.persistence.*;
 
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
     private String cpf;
     private boolean ativo = true;
     private String senha;
     private String telefone;
     private String email;
+
+    @Enumerated(EnumType.STRING)
     private Perfil perfil;
 
     public Usuario() {
