@@ -2,7 +2,7 @@ package br.com.cantina.Cantina.database.model;
 
 import br.com.cantina.Cantina.database.enums.CategoriaProduto;
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "produto")
@@ -12,14 +12,31 @@ public class Produto
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotBlank(message = "O nome do produto é obrigatório")
+    @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres")
+    @Column(nullable = false, length = 100)
     private String nome;
+
+    @NotBlank(message = "A descrição do produto é obrigatória")
+    @Size(min = 10, max = 500, message = "A descrição deve ter entre 10 e 500 caracteres")
+    @Column(nullable = false, length = 500)
     private String descricao;
     
+    @NotNull(message = "A categoria é obrigatória")
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private CategoriaProduto categoriaProduto;
     
+    @NotBlank(message = "O tempo de preparo é obrigatório")
+    @Size(max = 10, message = "O tempo de preparo deve ter no máximo 10 caracteres")
+    @Column(nullable = false, length = 10)
     private String tempoPreparoMinutos;
+
+    @Min(value = 0, message = "A quantidade não pode ser negativa")
+    @Column(nullable = false)
     private int quantidadeDisponivelHoje;
+
+    @Column(nullable = false)
     private boolean ativo;
 
     public Produto() {
