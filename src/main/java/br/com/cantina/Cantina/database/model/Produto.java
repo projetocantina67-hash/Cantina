@@ -1,13 +1,23 @@
 package br.com.cantina.Cantina.database.model;
 
 import br.com.cantina.Cantina.database.enums.CategoriaProduto;
+import jakarta.persistence.*;
 
+
+@Entity
+@Table(name = "produto")
 public class Produto
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     private String nome;
     private String descricao;
+    
+    @Enumerated(EnumType.STRING)
     private CategoriaProduto categoriaProduto;
+    
     private String tempoPreparoMinutos;
     private int quantidadeDisponivelHoje;
     private boolean ativo;
