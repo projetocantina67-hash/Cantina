@@ -20,6 +20,7 @@ Projeto acadêmico desenvolvido por Erick, Joyce, Marcus e Thiago.
 
 ## 🛠️ Tecnologias utilizadas
 
+- React
 - Java (JDK 21)
 - Springboot
 - MySQL
