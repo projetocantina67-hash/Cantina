@@ -1,0 +1,49 @@
+package br.com.cantina.Cantina.service;
+
+
+import br.com.cantina.Cantina.database.model.ItemPedido;
+import br.com.cantina.Cantina.repository.ItemPedidoRepository;
+import br.com.cantina.Cantina.repository.PedidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+
+@Service
+public class ItemPedidoService {
+    private final ItemPedidoRepository itemPedidoRepository;
+    private final PedidoRepository pedidoRepository;
+
+    @Autowired
+    public ItemPedidoService(ItemPedidoRepository itemPedidoRepository, PedidoRepository pedidoRepository) {
+        this.itemPedidoRepository = itemPedidoRepository;
+        this.pedidoRepository = pedidoRepository;
+    }
+
+    @Transactional
+    public ItemPedido criarItemPedido(ItemPedido itemPedido) {
+        itemPedido.setPedido(pedidoRepository.findById(itemPedido.getPedido().getId()).orElseThrow(() -> new IllegalStateException("Pedido não encontrado")));
+        if (itemPedido.getPreco() == null || itemPedido.getPreco().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalStateException("O preço do item do pedido é obrigatório" + itemPedido.getNome());
+        }
+        ItemPedido itempedido = new ItemPedido();
+        itempedido.setNome(itemPedido.getNome());
+        itempedido.setPreco(itemPedido.getPreco());
+        itempedido.setPedido(itemPedido.getPedido());
+        return itemPedidoRepository.save(itempedido);
+    }
+
+    @Transactional
+    public ItemPedido atualizarItemPedido(Long id, ItemPedido itemPedido) {
+        ItemPedido itempedido = itemPedidoRepository.findById(id).orElseThrow(() -> new IllegalStateException("Item do pedido não encontrado"));
+        itempedido.setNome(itemPedido.getNome());
+        itempedido.setPreco(itemPedido.getPreco());
+        return itemPedidoRepository.save(itempedido);
+    }
+
+    @Transactional
+    public void excluirItemPedido(Long id) {
+        itemPedidoRepository.deleteById(id);
+    }
+}
