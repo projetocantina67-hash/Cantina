@@ -1,9 +1,7 @@
 package br.com.cantina.Cantina.database.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
@@ -20,9 +18,8 @@ public class ItemPedido {
     @Column(nullable = false, length = 100)
     private String nome;
 
-    @NotBlank(message = "O preço do pedido é obrigatório")
-    @Min(value = 0, message = "O valor total não pode ser negativo")
-    @Size(min = 1, max = 10, message = "O preço deve ter entre 1 e 10 caracteres")
+    @NotNull(message = "O preço do item do pedido é obrigatório")
+    @DecimalMin(value = "0.00", message = "O valor total não pode ser negativo")
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal preco;
 
@@ -49,7 +46,6 @@ public class ItemPedido {
     }
 
     public String getNome() {
-        setNome("Item");
         return nome;
     }
 
@@ -62,7 +58,6 @@ public class ItemPedido {
     }
 
     public BigDecimal getPreco() {
-        setPreco(new BigDecimal("0.00"));
         return preco;
     }
 
