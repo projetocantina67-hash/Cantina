@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
+
 
 @Entity
 @Table(name = "item_pedido")
@@ -22,13 +24,13 @@ public class ItemPedido {
     @Min(value = 0, message = "O valor total não pode ser negativo")
     @Size(min = 1, max = 10, message = "O preço deve ter entre 1 e 10 caracteres")
     @Column(nullable = false, precision = 10, scale = 2)
-    private double preco;
+    private BigDecimal preco;
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    public ItemPedido(Long id, String nome, double preco) {
+    public ItemPedido(Long id, String nome, BigDecimal preco) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -42,11 +44,25 @@ public class ItemPedido {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
+        setNome("Item");
         return nome;
     }
 
-    public double getPreco() {
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public BigDecimal getPreco() {
+        setPreco(new BigDecimal("0.00"));
         return preco;
     }
 
