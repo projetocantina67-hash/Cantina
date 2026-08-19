@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ItemPedidoService {
@@ -53,5 +54,15 @@ public class ItemPedidoService {
     @Transactional
     public void excluirItemPedido(Long id) {
         itemPedidoRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ItemPedido> listAll() {
+        return itemPedidoRepository.findAll();
+    }
+
+    public ItemPedido buscarPorId(Long id) {
+        return itemPedidoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Item do pedido não encontrado"));
     }
 }
