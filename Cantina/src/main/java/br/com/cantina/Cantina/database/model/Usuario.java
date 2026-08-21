@@ -1,16 +1,52 @@
 package br.com.cantina.Cantina.database.model;
 
 import br.com.cantina.Cantina.database.enums.Perfil;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "O nome do usuário é obrigatório")
+    @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres")
+    @Column(nullable = false, length = 100)
     private String nome;
+
+    @NotBlank(message = "O CPF é obrigatório")
+    @Size(min = 11, max = 11, message = "O CPF deve ter 11 dígitos")
+    @Column(nullable = false, unique = true, length = 11)
     private String cpf;
+
+    @Column(nullable = false)
     private boolean ativo = true;
+
+    @NotBlank(message = "A senha é obrigatória")
+    @Size(min = 6, max = 255, message = "A senha deve ter entre 6 e 255 caracteres")
+    @Column(nullable = false)
     private String senha;
+
+    @NotBlank(message = "O telefone é obrigatório")
+    @Size(min = 10, max = 11, message = "O telefone deve ter entre 10 e 11 dígitos")
+    @Column(nullable = false, length = 11)
     private String telefone;
+
+    @NotBlank(message = "O email é obrigatório")
+    @Email(message = "O email deve ser válido")
+    @Column(nullable = false, unique = true, length = 150)
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "O perfil é obrigatório")
+    @Column(nullable = false)
     private Perfil perfil;
 
     public Usuario() {
