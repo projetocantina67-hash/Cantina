@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CantiNAI</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="shortcut icon" href="/images/Favicon.jpg" type="image/png">
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <button class="logo" onclick="window.app.navigate('home')">
+            <div class="logo-icon"><img src="/images/Logo.png" alt="Logo"></div>
+        </button>
+
+        <nav class="nav">
+            <button id="nav-home" onclick="window.app.navigate('home')">Home</button>
+            <button id="nav-menu" onclick="window.app.navigate('menu')">Cardápio</button>
+            <button id="nav-orders" onclick="window.app.navigate('orders')">Meus Pedidos</button>
+        </nav>
+
+        <div class="header-actions">
+            <button class="cart-button" onclick="window.app.toggleCart()" aria-label="Abrir carrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count" class="cart-count hidden">0</span>
+            </button>
+            <div id="user-area" class="profile"></div>
+        </div>
+    </div>
+</header>
+
+<div id="loading-overlay" class="loading-overlay hidden">
+    <div class="spinner"></div>
+    <p>Processando...</p>
+</div>
+
+<main id="app"></main>
+
+<div id="cart-overlay" class="overlay hidden" onclick="window.app.toggleCart()"></div>
+<aside id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+        <h2>Seu Carrinho (<span id="cart-title-count">0</span>)</h2>
+        <button onclick="window.app.toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="cart-content" class="cart-content"></div>
+</aside>
+
+<div id="toast-container"></div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div>
+            <h3>Canti<span class="highlight">NAI</span></h3>
+            <p>Sistema de Agendamento de Produtos da Cantina SENAI.</p>
+        </div>
+        <div>
+            <h4>Links Rápidos</h4>
+            <button onclick="window.app.navigate('home')">Home</button>
+            <button onclick="window.app.navigate('menu')">Cardápio</button>
+        </div>
+        <div>
+            <h4>Contato</h4>
+            <p>contato@cantinasenai.com</p>
+            <p>(11) 2227-8020</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
